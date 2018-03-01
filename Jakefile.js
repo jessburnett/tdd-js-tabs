@@ -3,8 +3,12 @@
 // 4- code, not configuration 5-straightforward and simple (Jake, Grunt, Gulp)
 /* dependency management schools:
 * 1 - automatically install dependencies
-*     a - cons: dependency version may not be available.
-* 2 -
+*     a - con: dependency version may not be available.
+*     b - pro: less weight on source control
+* 2 - include dependencies in source code
+*     a - con: weighs down performance of source control
+*     b - pros: guaranteed correct version and handles obsolete dependencies
+* Let's use #2 for this class.
 * */
 //wrap in iffy to avoid namespace errors
 (function(){
