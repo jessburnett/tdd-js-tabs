@@ -1,7 +1,4 @@
 How To: Tabs
-This is the source code for the "How To: Tabs"
-
-Covers a wide range of topics, including:
 
 covers a wide range of topics, including:
 
