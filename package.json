@@ -1,0 +1,23 @@
+{
+  "name": "how-to-tabs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "teaching test driven js - automated build",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessburnett/tdd-js-tabs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessburnett/tdd-js-tabs/issues"
+  },
+  "homepage": "https://github.com/jessburnett/tdd-js-tabs#readme",
+  "devDependencies": {
+    "jake": "^8.0.15"
+  }
+}
