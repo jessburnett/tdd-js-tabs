@@ -4,6 +4,6 @@
 (function(){
     "use strict";
 
-    console.log("setup automated build at ground zero");
+    console.log("\n\nBUILD OK");
 
 }());
