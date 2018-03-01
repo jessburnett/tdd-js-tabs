@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "teaching test driven js - automated build",
-  "main": "build.js",
+  "main": "Jakefile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
