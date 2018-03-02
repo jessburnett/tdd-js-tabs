@@ -8,8 +8,8 @@
 * 2 - include dependencies in source code
 *     a - con: weighs down performance of source control
 *     b - pros: guaranteed correct version and handles obsolete dependencies
-* Let's use #2 for this class.
-* */
+* Let's use #2 for this * */
+
 //wrap in iffy to avoid namespace errors
 (function(){
     "use strict";
