@@ -1,3 +1,9 @@
 #WebStorm Workspace
 .idea/workspace.xml___jb_tmp___
 .idea/workspace.xml
+
+#macs only
+.DS_Store
+
+#npm
+node_modules/**/.bin/
