@@ -14,9 +14,31 @@
 (function(){
     "use strict";
 
-    desc("Default Task");
-    task("default", function(){
-        console.log("\n\nBUILD OK");
-    })
+    var semver = require("semver");
 
-}());//end iffy
+    desc("Default Task");
+    task("default", ["node version"], function(){
+        console.log("\n\nBUILD OK");
+    });
+
+    //check external dependencies
+    desc("Checking Node Version");
+    task("node version", function(){
+
+        var packageJson = require("./package.json");
+        var expectedVersion = "v" + packageJson.engines.node;
+        console.log(expectedVersion);
+
+
+        var exec = require('child_process').exec;
+        exec('node --version', function(error, stdout, stderr) {
+            var actualVersion = stdout;
+            if (semver.neq(expectedVersion, actualVersion)) {
+                fail('Incorrect npm version: expected ' + expectedVersion + ', but was ' + actualVersion);
+            }
+            complete();
+        });
+    }, { async: true
+    });
+
+}());

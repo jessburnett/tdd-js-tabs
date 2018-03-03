@@ -2,7 +2,10 @@
   "name": "how-to-tabs",
   "version": "1.0.0",
   "private": true,
-  "description": "teaching test driven js - automated build",
+  "engines": {
+    "node": "0.12.4"
+  },
+  "description": "test driven js - automated build",
   "main": "Jakefile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +21,7 @@
   },
   "homepage": "https://github.com/jessburnett/tdd-js-tabs#readme",
   "devDependencies": {
-    "jake": "^8.0.15"
+    "jake": "^8.0.15",
+    "semver": "^5.5.0"
   }
 }
