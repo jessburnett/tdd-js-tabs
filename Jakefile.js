@@ -12,25 +12,37 @@
 
 //wrap in iffy to avoid namespace errors
 (function(){
-    "use strict";
 
-    var semver = require("semver");
+    var semver = require('semver');
+    var jshint = require('simplebuild-jshint');
+    var mocha = require('mocha');
+    var exec = require('child_process').exec;
 
-    desc("Default Task");
-    task("default", ["node version"], function(){
-        console.log("\n\nPASS: BUILD OK!");
+    //*** GENERAL-PURPOSE TASKS
+
+    desc('Default Task');
+    task('default', ['node version', 'lint', 'automated-tests', 'run' ], function(){
+        console.log('\n\nPASS: BUILD OK!');
     });
 
-    //check external dependencies
-    desc("Checking Node Version...");
-    task("node version", function(){
+    desc('Run a localhost server');
+    task('run', function(){
+        jake.exec('node node_modules/http-server/bin/http-server src', { interactive: true }, complete);
+    });
 
-        var packageJson = require("./package.json");
-        var expectedVersion = "v" + packageJson.engines.node;
+
+    //*** SUPPORTING
+
+    //check external dependencies
+    desc('Checking Node Version...');
+    task('node version', function(){
+
+        var packageJson = require('./package.json');
+        var expectedVersion = 'v' + packageJson.engines.node;
         console.log(expectedVersion);
 
 
-        var exec = require('child_process').exec;
+
         exec('node --version', function(error, stdout, stderr) {
             var actualVersion = stdout;
             if (semver.neq(expectedVersion, actualVersion))
@@ -39,7 +51,30 @@
             }
             complete();
         });
-    }, { async: true
+    }, { async: true });
+
+    desc('Linting JavaScript Code');
+    task('lint', function(){
+        process.stdout.write('Linting Javascript:');
+            jshint.checkFiles({
+                files: [ "Jakefile.js", "src/**/*.js" ],
+                options: {
+                    bitwise: true,
+                    eqeqeq: true,
+                    freeze: true
+                },
+                globals: {}
+            }, complete, fail);
+        }, { async: true });
+
+    desc('Automated Tests:');
+    task('automated-tests', function(){
+        exec('node_modues/.bin/mocha src/test.js', function(error, stdout, stderr){
+            process.stdout.write('Running Automated Tests:\n\n');
+            var results = mocha.Runner.result;
+            console.log(results);
+        });
     });
+
 
 }());
