@@ -19,7 +19,7 @@ To try the code on your computer:
 2. Install [Git](http://git-scm.com/downloads).
 3. Open a command prompt.
 4. Change to the directory that will contain the project. In your command prompt, type: `cd <directory>` (where `<directory>` is the directory that will contain the project).
-5. Copy the source repository to your computer: `git clone https://github.com/jessburnett/tdd-js.git`
+5. Copy the source repository to your computer: `git clone https://github.com/jessburnett/tdd-js-tabs.git`
 6. Change to the project directory: `cd tdd-js`
 
 To run the build on windows:
