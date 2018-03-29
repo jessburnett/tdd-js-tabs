@@ -6,17 +6,17 @@
 
     var assert = require('chai').assert;
 
-    describe("Addition", function(){
 
-        it("adds positive numbers", function(){
-            assert.equal(add(3,4), 7);
+        //my assumptions will go here
+    describe("Student", function(){
+
+        it("has a first and last name", function(){
+            assert.equal(Student(), first, last);
         });
 
 
     });
 
-    function add(a, b){
-        return a + b;
-    }
+
 
 }());

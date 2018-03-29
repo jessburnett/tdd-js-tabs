@@ -8,7 +8,7 @@
 * 2 - include dependencies in source code
 *     a - con: weighs down performance of source control
 *     b - pros: guaranteed correct version and handles obsolete dependencies
-* Let's use #2 for this * */
+* Let's use #2 for this though usually 1 is used in work environments. I want you to be able to just install and run with one command * */
 
 //wrap in iffy to avoid namespace errors
 (function(){
@@ -71,8 +71,6 @@
     task('automated-tests', function(){
         exec('node_modues/.bin/mocha src/test.js', function(error, stdout, stderr){
             process.stdout.write('Running Automated Tests:\n\n');
-            var results = mocha.Runner.result;
-            console.log(results);
         });
     });
 
