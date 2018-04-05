@@ -19,11 +19,21 @@
     var jshint = require('simplebuild-jshint');
     var mocha = require('mocha');
     var exec = require('child_process').exec;
+    var karma = require('simplebuild-karma');
+    var KARMA_CONFIG = 'karma.conf.js';
+
 
     //*** GENERAL-PURPOSE TASKS
+    desc('Start Karma Server ( run this task first! )');
+    task('karma', function(){
+        console.log('Starting Karma Server');
+        karma.start({
+            configFile: KARMA_CONFIG
+        }, complete, fail);
+    }, { async: true });
 
     desc('Default Task');
-    task('default', ['node version', 'lint', 'automated-tests', 'run' ], function(){
+    task('default', ['node version', 'lint', 'karma', 'automated-tests', 'run' ], function(){
         console.log('\n\nPASS: BUILD OK!');
     });
 
@@ -44,7 +54,6 @@
         console.log(expectedVersion);
 
 
-
         exec('node --version', function(error, stdout, stderr) {
             var actualVersion = stdout;
             if (semver.neq(expectedVersion, actualVersion))
@@ -55,6 +64,7 @@
         });
     }, { async: true });
 
+    //linting
     desc('Linting JavaScript Code');
     task('lint', function(){
         process.stdout.write('Linting Javascript:');
@@ -63,19 +73,30 @@
                 options: {
                     bitwise: true,
                     eqeqeq: true,
-                    freeze: true,
-                    strict: true
+                    freeze: true
                 },
-                globals: {}
+                globals: {
+                    //Mocha globals to ignore
+                    describe: false,
+                    it: false,
+                    before: false,
+                    after: false,
+                    beforeEach: false,
+                    afterEach: false
+                }
             }, complete, fail);
-        }, { async: true });
+        },
+        { async: true});
 
-    desc('Automated Tests:');
-    task('automated-tests', function(){
-        exec('node_modues/.bin/mocha src/test.js', function(error, stdout, stderr){
-            process.stdout.write('Running Automated Tests:\n\n');
-        });
-    });
-
+    desc('Testing Javascript:');
+    task("automated-tests", function() {
+        karma.run({
+            configFile: KARMA_CONFIG,
+            expectedBrowsers: [
+                "Chrome 42.0.2311 (Mac OS X 10.10.3)",
+                "Firefox 37.0.0 (Mac OS X 10.10)"
+            ]
+        }, complete, fail);
+    }, { async: true });
 
 }());
