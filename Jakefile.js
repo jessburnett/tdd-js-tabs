@@ -63,7 +63,8 @@
                 options: {
                     bitwise: true,
                     eqeqeq: true,
-                    freeze: true
+                    freeze: true,
+                    strict: true
                 },
                 globals: {}
             }, complete, fail);
